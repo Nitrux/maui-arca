@@ -11,14 +11,14 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(REQUIRED_KF5_VERSION 5.77.0)
-set(QT_MIN_VERSION "5.15.2")
-set(KF5_MIN_VERSION "5.92.0")
+set(REQUIRED_QT_VERSION 6.9)
+set(REQUIRED_KF6_VERSION 6.13.0)
+set(REQUIRED_MAUIKIT_VERSION 4.0.3)
 
 set(PROJECT_URI "org.kde.${PROJECT_NAME}")
 add_definitions(-DPROJECT_URI="${PROJECT_URI}")
 
-find_package(ECM ${REQUIRED_KF5_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${REQUIRED_KF6_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
@@ -32,8 +32,8 @@ include(ECMSourceVersionControl)
 include(FeatureSummary)
 include(ECMQMLModules)
 
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core Quick Widgets)
-find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS I18n CoreAddons Archive)
+find_package(Qt6 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Core Quick Widgets)
+find_package(KF6 ${REQUIRED_KF6_VERSION} REQUIRED COMPONENTS I18n CoreAddons Archive)
 
 find_package(Qt5QuickCompiler)
 set_package_properties(Qt5QuickCompiler PROPERTIES
@@ -41,8 +41,7 @@ set_package_properties(Qt5QuickCompiler PROPERTIES
     TYPE OPTIONAL
     )
 
-find_package(MauiKit)
-find_package(MauiKit COMPONENTS FileBrowsing)
+find_package(MauiKit4 ${REQUIRED_MAUIKIT_VERSION} REQUIRED COMPONENTS FileBrowsing)
 
 if(ECM_SOURCE_UNDER_VERSION_CONTROL)
     execute_process(
@@ -89,4 +88,3 @@ feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
-
