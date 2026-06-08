@@ -2,7 +2,7 @@
 
 ![](https://mauikit.org/wp-content/uploads/2018/12/maui_project_logo.png)
 
-_Archie manager built with MauiKit._
+_Archive manager built with MauiKit._
 
 # Issues
 
